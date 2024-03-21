@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+#chat-window {
+  scrollbar-width: auto;
+  scrollbar-color: #8b8ea2 #ffffff;
+  z-index: 1003;
+}
+
+/* Chrome, Edge, and Safari */
+#chat-window::-webkit-scrollbar {
+  width: 16px;
+}
+
+#chat-window::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 0.5rem;
+}
+
+#chat-window::-webkit-scrollbar-thumb {
+  background-color: #8b8ea2;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
+}
+
+#chat-root {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+@media (min-width: 768px) {
+  #chat-root {
+    max-height: 80vh;
+    width: auto;
+    margin-right: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.highlighted-element {
+  position: relative;
+  z-index: 1001;
+}
+
+.highlighter {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1002;
+  background-color: rgba(255, 255, 0, 0.5);
+  padding: 8px;
+  border-radius: 4px;
+  animation: highlighterPulse 1.75s infinite;
+}
+
+.highlighter.fade-out {
+  animation: highlighterPulse 1.75s infinite, highlighterFadeOut 1s linear;
+}
+
+.highlighter-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.highlighter-overlay.fade-out {
+  animation: highlighterFadeOut 1s linear;
+}
+
+@keyframes highlighterPulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: rgba(255, 255, 0, 0.5) 0px 0px 1px 2px;
+  }
+
+  50% {
+    transform: scale(1);
+    box-shadow: rgba(255, 255, 0, 0.5) 0px 0px 8px 8px;
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: rgba(255, 255, 0, 0.5) 0px 0px 1px 2px;
+  }
+}
+
+@keyframes highlighterFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.animation-delay-0 {
+  animation-delay: 0ms;
+}
+
+.animation-delay-500 {
+  animation-delay: 500ms;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1000ms;
+}
+
+#chat-input {
+  padding-right: 2.5rem;
+}
